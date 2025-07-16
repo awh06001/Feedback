@@ -55,17 +55,25 @@
   </div>
 
   <script>
+    function isWebView() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      return /WebView|wv|FBAN|FBAV|Instagram|Snapchat|Messenger|Line|TikTok|Twitter/.test(ua);
+    }
+
     function startRickroll() {
-      // Hide the fake survey
+      if (isWebView()) {
+        alert("For full audio and playback, tap your browser’s share icon (or three dots) and choose 'Open in Chrome' or 'Open in Safari'.");
+        return;
+      }
+
       document.querySelector('h1').style.display = 'none';
       document.querySelector('p').style.display = 'none';
       document.querySelector('button').style.display = 'none';
 
-      // Show and set the iframe *after* interaction
-      const videoContainer = document.getElementById('videoContainer');
+      const container = document.getElementById('videoContainer');
       const iframe = document.getElementById('rickrollFrame');
       iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&controls=0&rel=0";
-      videoContainer.style.display = 'block';
+      container.style.display = 'block';
     }
   </script>
 </body>
