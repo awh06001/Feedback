@@ -2,13 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Loading Feedback Survey...</title>
+  <title>Feedback Survey Portal</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      height: 100%;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 1.2em;
+      padding: 12px 24px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #videoContainer {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
       background-color: black;
+      z-index: 999;
     }
     video {
       width: 100vw;
@@ -18,9 +45,30 @@
   </style>
 </head>
 <body>
-  <video autoplay controls playsinline id="rr" onclick="this.requestFullscreen();">
-    <source src="https://cdn.glitch.global/5f5ffb69-2e8e-4ebf-92ab-fb62b3c532f7/rickroll.mp4?v=1692124830697" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
+
+  <h1>Springtown ISD Feedback Survey</h1>
+  <p>Please click the button below to begin.</p>
+  <button onclick="startRickroll()">Proceed to Survey</button>
+
+  <div id="videoContainer">
+    <video id="rickvid" autoplay playsinline controls>
+      <source src="https://cdn.glitch.global/5f5ffb69-2e8e-4ebf-92ab-fb62b3c532f7/rickroll.mp4?v=1692124830697" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    function startRickroll() {
+      document.querySelector('h1').style.display = 'none';
+      document.querySelector('p').style.display = 'none';
+      document.querySelector('button').style.display = 'none';
+      const vidBox = document.getElementById('videoContainer');
+      vidBox.style.display = 'block';
+      const video = document.getElementById('rickvid');
+      video.muted = false;
+      video.play();
+      video.requestFullscreen?.(); // optional fullscreen
+    }
+  </script>
 </body>
 </html>
