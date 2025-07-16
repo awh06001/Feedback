@@ -51,19 +51,21 @@
   <button onclick="startRickroll()">Proceed to Survey</button>
 
   <div id="videoContainer">
-    <iframe
-      src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&controls=0&rel=0"
-      allow="autoplay; fullscreen"
-      allowfullscreen>
-    </iframe>
+    <iframe id="rickrollFrame" allow="autoplay; fullscreen" allowfullscreen></iframe>
   </div>
 
   <script>
     function startRickroll() {
+      // Hide the fake survey
       document.querySelector('h1').style.display = 'none';
       document.querySelector('p').style.display = 'none';
       document.querySelector('button').style.display = 'none';
-      document.getElementById('videoContainer').style.display = 'block';
+
+      // Show and set the iframe *after* interaction
+      const videoContainer = document.getElementById('videoContainer');
+      const iframe = document.getElementById('rickrollFrame');
+      iframe.src = "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0&controls=0&rel=0";
+      videoContainer.style.display = 'block';
     }
   </script>
 </body>
